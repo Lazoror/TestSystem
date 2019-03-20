@@ -9,7 +9,6 @@ namespace TestingsSystem.Models
     public class Test
     {
         public int TestID { get; set; }
-
         [Required]
         public string TestName { get; set; }
         public string TestObject { get; set; }

@@ -35,7 +35,6 @@ namespace TestingsSystem.Controllers
             ViewBag.Test = test;
 
             return View(av);
-
         }
 
 
@@ -46,7 +45,7 @@ namespace TestingsSystem.Controllers
             int mistakes = 0;
             int rightAnswers = 0;
             int rightAnswersCount = db.Answers.ToList().Where(a => a.TestID == av.Answers[0].TestID && a.IsTrueAnswer == true).Count();
-            
+
 
             foreach (Answer item in av.Answers)
             {
@@ -63,7 +62,7 @@ namespace TestingsSystem.Controllers
             }
 
 
-            return RedirectToAction("Result", new {rightAnswers, rightAnswersCount, mistakes });
+            return RedirectToAction("Result", new { rightAnswers, rightAnswersCount, mistakes });
         }
 
         public ActionResult Result(int rightAnswers, int rightAnswersCount, int mistakes)
@@ -88,10 +87,10 @@ namespace TestingsSystem.Controllers
             }
 
             return View(t);
-            
+
         }
-        
-        
+
+
         public ActionResult Create()
         {
             return View();
@@ -114,7 +113,7 @@ namespace TestingsSystem.Controllers
 
             Question qt = new Question();
             qt = db.Questions.First(a => a.TestID == q.TestID);
-            
+
 
             return RedirectToAction("Question", new { @id = q.TestID, @Question = qt.QuestionID });
         }
@@ -140,7 +139,7 @@ namespace TestingsSystem.Controllers
         public ActionResult Question(int? id, int? Question)
         {
 
-            if(db.Questions.Find(Question) == null || db.Tests.Find(id) == null)
+            if (db.Questions.Find(Question) == null || db.Tests.Find(id) == null)
             {
                 return RedirectToAction("Error");
             }
@@ -158,7 +157,7 @@ namespace TestingsSystem.Controllers
 
         }
 
-        
+
         public ActionResult CreateAnswer([Bind(Include = "AnswerName, IsTrueAnswer, QuestionID")] Answer a, int Answer, int id, int Question)
         {
             a.QuestionID = Question;
@@ -195,7 +194,7 @@ namespace TestingsSystem.Controllers
                 return RedirectToAction("Question", new { @id = id, @Question = qCheck });
             }
 
-            return RedirectToAction("Index", new { @id = id});
+            return RedirectToAction("Index", new { @id = id });
         }
 
 
@@ -211,7 +210,6 @@ namespace TestingsSystem.Controllers
             {
                 return RedirectToAction("Error");
             }
-
 
             foreach (var item in answers)
             {
@@ -233,5 +231,45 @@ namespace TestingsSystem.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Find()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Find(string search)
+        {
+
+            if (!String.IsNullOrEmpty(search))
+            {
+                int searchId;
+
+                bool isInt = Int32.TryParse(search, out searchId);
+
+                if (isInt)
+                {
+                    if (db.Tests.Find(searchId) != null)
+                    {
+                        return RedirectToAction("Index", new { @id = searchId });
+                    }
+                    ViewBag.error = "Not Found";
+                    return View();
+
+                }
+
+                if (db.Tests.ToList().Where(a => a.TestName == search).Any())
+                {
+                    return RedirectToAction("Index", new { @id = db.Tests.ToList().Where(a => a.TestName == search).First().TestID });
+                }
+                ViewBag.error = "Not Found";
+                return View();
+            }
+
+            
+
+            return View();
+
+        }
     }
 }

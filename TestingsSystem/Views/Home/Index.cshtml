@@ -6,9 +6,11 @@
 
 <div class="container">
     <div class="col-md-12">
+        <div "main-control">
+            <ul class="main-control-list">
 
-        <div class="btn-create">
-            @Html.ActionLink("Create Test", "Create", "Test")
+                <li><a href="@Url.Action("Create", "Test")" class="btn btn-default">Create test</a></li>
+                <li><a href="@Url.Action("Find", "Test")" class="btn btn-default">Find test</a></li></ul>
         </div>
     </div>
 </div>

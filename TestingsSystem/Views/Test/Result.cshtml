@@ -1,13 +1,10 @@
 ﻿
 @{
     ViewBag.Title = "Result";
+    int AnswCount = (100 / ViewBag.AnswerCount) * ViewBag.RightAnswers;
 }
 
 <h2>Result</h2>
-
-@{ 
-    int AnswCount = (100 / ViewBag.AnswerCount) * ViewBag.RightAnswers;
-}
 
 <h1>Your score: @ViewBag.RightAnswers/@ViewBag.AnswerCount  &#8594 @AnswCount% </h1>
 <h1>Mistakes: @ViewBag.Mistakes</h1>

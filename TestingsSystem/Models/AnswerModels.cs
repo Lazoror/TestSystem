@@ -11,8 +11,6 @@ namespace TestingsSystem.Models
         {
 
             public int AnswerID { get; set; }
-
-            
             public string AnswerName { get; set; }
             public bool IsTrueAnswer { get; set; }
             public int QuestionID { get; set; }

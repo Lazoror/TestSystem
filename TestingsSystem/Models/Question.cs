@@ -10,10 +10,7 @@ namespace TestingsSystem.Models
     {
 
         public int QuestionID { get; set; }
-
-        
         public string QuestionName { get; set; }
-        
         public int AnswerCount { get; set; }
         public int TestID { get; set; }
 

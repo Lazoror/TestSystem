@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Find";
+}
+
+<h2>Find test</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="control-test">
+        <input name="search" id="search" class="form-control" placeholder="Test id OR Test name " required />
+        <input type="submit" class="btn btn-default" value="Search" />
+    </div>
+
+    <h2 class="text-danger">@ViewBag.error</h2>
+}

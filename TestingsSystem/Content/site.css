@@ -1,13 +1,9 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    padding: 0;
 }
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -24,20 +20,30 @@ textarea {
 }
 
 .controls {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    height: 85vh;
+    min-height: 350px;
 }
 
-.controls input {
-    margin-bottom: 10px;
-    display: inline-block;
-}
-
-    .controls input[type="checkbox"] {
-        height: 35px;
-        width: 35px;
-        position: absolute;
-
+    .controls input {
+        margin-bottom: 10px;
+        display: block;
     }
+
+        .controls input[type="checkbox"] {
+            height: 31px;
+            width: 38px;
+        }
+
+
+.chk-box input[type="checkbox"] {
+    height: 37px;
+    width: 36px;
+}
 
 .btn-create {
     text-align: center;
@@ -54,3 +60,22 @@ textarea {
     }
 
 
+.control-test input{
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.control-test {
+    display: flex;
+    align-items: center;
+}
+
+.btn-default {
+    padding: 8px 40px;
+}
+
+.main-control-list li {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 10px;
+}

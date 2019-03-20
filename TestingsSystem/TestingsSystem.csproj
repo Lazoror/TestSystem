@@ -226,6 +226,7 @@
     <Content Include="Views\Test\Error.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\Result.cshtml" />
+    <Content Include="Views\Test\Find.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
