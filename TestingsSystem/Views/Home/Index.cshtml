@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Styles.Render(@"~/Content/css")
+
+<div class="container">
+    <div class="col-md-12">
+
+        <div class="btn-create">
+            @Html.ActionLink("Create Test", "Create", "Test")
+        </div>
+    </div>
+</div>

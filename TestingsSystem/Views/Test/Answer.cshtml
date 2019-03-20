@@ -1,0 +1,40 @@
+﻿@model TestingsSystem.Models.AnswerView
+
+@Styles.Render(@"~/Content/css")
+
+@{
+    ViewBag.Title = "Answer";
+}
+
+
+
+<div class="container">
+
+    <div class="col-md-6">
+
+
+
+        @using (Html.BeginForm())
+        {
+
+            <h2>Test @ViewBag.TestId &#8594 Question @ViewBag.QuestionNum &#8594 Answers</h2>
+
+            <div class="controls controls-adjust">
+                @for (int i = 0; i < Model.Answers.Count; i++)
+                {
+                    <div>
+                        @Html.HiddenFor(a => a.Answers[i].QuestionID)
+                        @Html.HiddenFor(a => a.Answers[i].AnswerID)
+                        @Html.EditorFor(a => a.Answers[i].AnswerName, new { htmlAttributes = new { @class = "form-control", placeholder = "Answer Name", required = "required" } })
+                        @Html.EditorFor(a => a.Answers[i].IsTrueAnswer)
+                    </div>
+                }
+            </div>
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <input type="submit" />
+
+        }
+    </div>
+</div>

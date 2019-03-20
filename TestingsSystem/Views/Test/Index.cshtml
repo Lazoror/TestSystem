@@ -1,0 +1,50 @@
+﻿@using TestingsSystem.Models
+
+@model TestingsSystem.Models.AnswerView
+
+@Styles.Render(@"~/Content/css")
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Test test = ViewBag.Test;
+    List<Question> questions = ViewBag.Questions;
+}
+
+<h5>Test @test.TestID</h5>
+<h2>@test.TestName</h2>
+
+@using (Html.BeginForm())
+{
+
+
+
+    for (int i = 0; i < questions.Count; i++)
+    {
+        <h3>@i. @questions[i].QuestionName</h3>
+
+
+        for (int k = 0; k < Model.Answers.Count; k++)
+        {
+            if (Model.Answers[k].QuestionID == questions[i].QuestionID)
+            {
+        <div class="controls">
+
+            @Html.HiddenFor(a => a.Answers[k].AnswerID)
+            @Html.HiddenFor(a => a.Answers[k].TestID)
+            @Html.HiddenFor(a => a.Answers[k].QuestionID)
+            @Html.EditorFor(a => a.Answers[k].AnswerName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.CheckBoxFor(a => a.Answers[k].IsTrueAnswer)
+        </div>
+
+
+            }
+        }
+
+
+    }
+
+    <input type="submit" />
+}

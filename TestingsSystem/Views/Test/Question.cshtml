@@ -1,0 +1,38 @@
+﻿@model TestingsSystem.Models.Question
+
+@Styles.Render(@"~/Content/css")
+
+@{
+    ViewBag.Title = "Question";
+}
+
+
+
+<div class="container">
+
+    <h2>Test @ViewBag.TestId &#8594 @ViewBag.TestName &#8594  Question @ViewBag.QuestionNum/@ViewBag.TestNum</h2>
+
+    @using (Html.BeginForm())
+    {
+        <div class="col-md-6">
+            <div class="controls">
+
+
+                @Html.HiddenFor(model => Model.TestID)
+                @Html.HiddenFor(model => Model.QuestionID)
+
+                @Html.TextBoxFor(model => Model.QuestionName, new { @class = "form-control", placeholder = "Question Name" })
+
+                @Html.EditorFor(model => Model.AnswerCount, new { htmlAttributes = new { @class = "form-control", placeholder = "Question Name", min = "2" } })
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                <input type="submit" class="btn btn-default" />
+            </div>
+        </div>
+
+    }
+
+    
+
+</div>
